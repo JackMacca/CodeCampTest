@@ -12,13 +12,34 @@ namespace CodeCampTest
         public void Initialisze()
         {
             driver = new ChromeDriver();
-            driver.Url = "https://d18u5zoaatmpxx.cloudfront.net/#/";
+            driver.Url = "https://d3nay7txmslpgb.cloudfront.net/#/";
             driver.Manage().Window.Maximize();
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void openPage_LogOn_VerifyHeader()
         {
+            new Toolbar(driver).ClickLogIn();
+
+            var login = new LogIn(driver);
+            login.SetUsername("bob");
+            login.SetPassword("ilovepizza");
+            login.ClickLogIn();
+            login.ClickProfile();
+            // look in login.VerifyHeader for more info
+            var headerText = login.VerifyHeader("Welcome bob");
+            login.ClickProfile();
+
+        }
+
+        [TestMethod]
+        public void openMenu_clickSides_findKoreanStickyWings()
+        {
+            new Toolbar(driver).ClickMenu();
+
+            var sidesMenu = new SideMenu(driver);
+
+            sidesMenu.ClickSides();
         }
 
         [TestCleanup]
