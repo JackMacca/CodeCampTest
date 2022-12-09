@@ -35,9 +35,10 @@ namespace CodeCampTest
 
         internal string VerifyHeader(string expectedText)
         {
-            var headerText = driver.FindElement(By.ClassName("v-main"));
-            // tried to get text from h2 and wanted to see if it equaled to Welcome bob but couldn't quite grab the text correctly
-            if (headerText.FindElement(By.ClassName("container")).Text.ToLower() == expectedText.ToLower())
+            // plan was to try and get text from h2 and wanted to see if it equaled to Welcome bob but couldn't quite access the container class
+            var headerTextDiv = driver.FindElement(By.ClassName("v-main"));
+            var headerText = headerTextDiv.FindElement(By.ClassName("container"));
+            if (headerText.Text.ToLower() == expectedText.ToLower())
             {
                 return driver.Url;
             }
